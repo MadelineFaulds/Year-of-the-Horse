@@ -268,6 +268,22 @@ def horse_segment():
     draw_wrapped_text("Press SPACE to continue.", 550)
     pygame.display.flip()
     wait_for_key({pygame.K_SPACE})
+def story_segment_5():
+    show_title_card("The Horse")
+    dialogue = (
+        '“Well done, Artemis.” Your eyes open, you stop in your tracks. A big horse with long flowing blonde hair stands in front of you. She looks like she’s on fire, but it’s just the sunlight.\n\n'
+        '“How did you know my name?” You ask, amazed that an animal so beautiful would ever concern herself with the likes of you.\n\n'
+        '“Artemis, we’ve been waiting for you!” She laughs, her tail swishing gently.  “You’ve been very brave so far, and I admire how you take advice in stride. But now, you must confront the most difficult of challenges.” She adds.\n\n'
+        'You lower your head with dread, you thought it was over.\n\n'
+        '“You have to ask for help.” She says, playfully nudging you on your shoulder with her head. “In that house over there-“ she nods to the farmhouse, “there is a kind, old couple. They’ve taken very good care of me over the years, and I have no doubt they will make sure you get home.”\n\n'
+        '“I just want my Mom.” You squeak out.\n\n'
+        '“Yes, I understand, Artemis. However, I’ve learned in my time on this earth that it takes more than a mother, or a friend, to get through life. It takes a herd – others who have your back and whom you can rely on to be beside you, rain or shine.”'
+    )
+    screen.fill(WHITE)
+    draw_wrapped_text(dialogue, 40, line_gap=34)
+    draw_wrapped_text("Press SPACE to continue.", 550)
+    pygame.display.flip()
+    wait_for_key({pygame.K_SPACE})
 
 # --- Pre-final game text ---
 def pre_final_game_text():
@@ -307,7 +323,7 @@ def main():
     run_game("runner_game.py")
 
     # Horse segment
-    horse_segment()
+    story_segment_5()
     pre_final_game_text()
 
     # Knock Sequence Game (after horse)
