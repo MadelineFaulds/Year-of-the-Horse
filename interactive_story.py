@@ -1,24 +1,26 @@
+
 import pygame
 import sys
 
-# Initialize pygame
+# pygame
 pygame.init()
 
-# Screen settings
+# window
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Interactive Story with Games")
 
-# Colors
+# colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-# Fonts
+# fonts
 font = pygame.font.SysFont(None, 36)
 title_font = pygame.font.SysFont(None, 64)
 
 
 def wrap_text(text, max_width, text_font):
+    # wrap
     words = text.split()
     lines = []
     current_line = ""
@@ -36,6 +38,7 @@ def wrap_text(text, max_width, text_font):
 
 
 def draw_wrapped_text(text, y, text_font=font, x=50, max_width=700, line_gap=40):
+    # draw
     wrapped_lines = []
     for paragraph in text.split("\n"):
         if paragraph.strip() == "":
@@ -49,6 +52,7 @@ def draw_wrapped_text(text, y, text_font=font, x=50, max_width=700, line_gap=40)
 
 
 def wait_for_key(valid_keys):
+    # wait
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -59,6 +63,7 @@ def wait_for_key(valid_keys):
 
 
 def intro():
+    # intro
     screen.fill(WHITE)
     draw_wrapped_text("Welcome to the Interactive Story!\nPress SPACE to continue.", 200)
     pygame.display.flip()
@@ -66,6 +71,7 @@ def intro():
 
 
 def show_title_card(title):
+    # title
     screen.fill(WHITE)
     rendered = title_font.render(title, True, BLACK)
     screen.blit(
@@ -197,12 +203,13 @@ def ending():
                 sys.exit()
 
 
-# --- Game launching helper ---
+# Game launching helper 
 import subprocess
 def run_game(filename):
+    # run
     subprocess.run(["python3", filename])
 
-# --- Fox segment ---
+# Fox segment 
 def story_segment_3():
     show_title_card("The Fox")
     dialogue = (
@@ -221,7 +228,7 @@ def story_segment_3():
     pygame.display.flip()
     wait_for_key({pygame.K_SPACE})
 
-# --- Mole segment ---
+# Mole segment 
 def story_segment_4():
     show_title_card("The Mole")
     dialogue = (
@@ -239,7 +246,7 @@ def story_segment_4():
     pygame.display.flip()
     wait_for_key({pygame.K_SPACE})
 
-# --- Post-game 4 text ---
+# Post-game 4 text 
 def post_game_4_text():
     post_text = (
         "It’s a field of long, soft grass, a pasture. The field is painted with the soft warm glow of the setting sun, and you see a farmhouse in the distance. "
@@ -251,7 +258,7 @@ def post_game_4_text():
     pygame.display.flip()
     wait_for_key({pygame.K_SPACE})
 
-# --- Horse segment ---
+# Horse segment
 def horse_segment():
     show_title_card("The Horse")
     dialogue = (
@@ -285,7 +292,7 @@ def story_segment_5():
     pygame.display.flip()
     wait_for_key({pygame.K_SPACE})
 
-# --- Pre-final game text ---
+# Pre-final game text
 def pre_final_game_text():
     pre_text = (
         "You approach the farmhouse, a cold wind now pulling at your hair. You reach to knock on the door. "
@@ -296,39 +303,40 @@ def pre_final_game_text():
     pygame.display.flip()
     wait_for_key({pygame.K_SPACE})
 
-# --- Main story/game sequence ---
+# Main story/game sequence 
 def main():
     intro()
 
-    # Story Segment 1: opening narration + title card + dialogue
+    # story 1
     story_segment_1()
-    # --- First game: Maze ---
+    # maze
     run_game("maze_game.py")
 
-    # Story Segment 2: The Beaver
+    # beaver
     story_segment_2()
-    # --- Second game: Pair Matching ---
+    # pair
     run_game("pair_matching_game.py")
     post_game_2_text()
 
-    # Fox segment
+    # fox
     story_segment_3()
-    # --- Third game: Clicker Bar ---
+    # clicker
     run_game("clicker_bar_game.py")
 
-    # Mole segment
+    # mole
     story_segment_4()
     post_game_4_text()
-    # --- Runner game: after mole ---
+    # runner
     run_game("runner_game.py")
 
-    # Horse segment
+    # horse
     story_segment_5()
     pre_final_game_text()
 
-    # Knock Sequence Game (after horse)
+    # knock
     run_game("knock_sequence_game.py")
 
+    # end
     ending()
 
 

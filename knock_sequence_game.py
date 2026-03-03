@@ -21,7 +21,7 @@ GRAY = (180, 180, 180)
 
 # Sounds
 knock_sound = pygame.mixer.Sound(pygame.mixer.Sound(pygame.mixer.get_init() and pygame.mixer.Sound(buffer=b'\x00'*1000) or None))
-# If you want a real knock sound, replace above with a .wav file and load it.
+# replace above with a .wav file and load it for knock sound
 
 font = pygame.font.SysFont(None, 48)
 small_font = pygame.font.SysFont(None, 32)
