@@ -110,11 +110,22 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.KEYDOWN and not game_over:
-                if event.key == pygame.K_UP or event.key == pygame.K_SPACE:
-                    player.jump()
-                if event.key == pygame.K_DOWN:
-                    player.slide()
+            if event.type == pygame.KEYDOWN:
+                if not game_over:
+                    if event.key == pygame.K_UP or event.key == pygame.K_SPACE:
+                        player.jump()
+                    if event.key == pygame.K_DOWN:
+                        player.slide()
+                else:
+                    # Restart game if 'R' is pressed
+                    if event.key == pygame.K_r:
+                        # Reset all game variables
+                        player = Player()
+                        obstacles = []
+                        frame_count = 0
+                        score = 0
+                        game_over = False
+                        win = False
         if not game_over:
             player.update()
             # Spawn obstacles
@@ -156,6 +167,8 @@ def main():
             else:
                 msg = font.render("Game Over!", True, RED)
             screen.blit(msg, (WIDTH // 2 - msg.get_width() // 2, 80))
+            restart_msg = font.render("Press R to Restart", True, BLACK)
+            screen.blit(restart_msg, (WIDTH // 2 - restart_msg.get_width() // 2, 140))
         pygame.display.flip()
 
 if __name__ == "__main__":
