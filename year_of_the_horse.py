@@ -25,7 +25,7 @@ GRAY = (180, 180, 180)
 BLUE = (0, 120, 255)
 BROWN = (139, 69, 19)
 
-# Fonts
+# Fontsco
 
 
 FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'fonts')
@@ -294,9 +294,7 @@ def story_segment_3():
     ], 'fox.png')
 
 
-def story_segment_4():
-
-    # Show mole title card with mole.png as background
+def show_mole_title_card():
     w, h = screen.get_size()
     path = os.path.join(IMAGE_DIR, 'mole.png')
     bg = pygame.image.load(path).convert()
@@ -309,6 +307,7 @@ def story_segment_4():
     pygame.display.flip()
     wait_for_key({pygame.K_SPACE})
 
+def story_segment_4():
     show_paragraphs_over_image([
         "Now covered in thorns and leaves, you are feeling exhausted. You can see a break in the tree line, but you can't find the will to keep moving your feet. Your boots feel so heavy, your hands feel so cold. As you continue to glance longingly to the break in the tree line, a mole pops out of the ground at your feet.",
         '"Oh, pardon me! Sometimes I have no idea where I\'ll breach the surface!" It says, patting your boot apologetically where it had careened into you.',
@@ -318,7 +317,6 @@ def story_segment_4():
         '"Ahh. I know this dilemma well! Sometimes, I get away from myself and I dig far too deep into the soil. When I realize my mistake, I\'m so far underground and so tired, that finding the surface seems impossible, I dig, and I dig, and I dig, and it feels like I\'ll never reach the surface. The important part… I keep digging!" He exclaims, nose twitching. "Perseverance is about what you do in those moments where you can\'t see the light at the end of the tunnel. Do you stop, letting the cold soil surround you, or do you keep digging until your find the warm sun?"',
         'The mole waves goodbye, and burrows back into the ground. You stand up and begin to march towards that break in the treeline.',
     ], 'mole.png')
-    
 
 def story_segment_5():
 
@@ -1222,17 +1220,17 @@ def main():
     run_pair_matching_game()
     post_game_2_text()
 
+
     # Story 3: The Fox → Clicker Bar Game
     story_segment_3()
     run_clicker_bar_game()
     pygame.mixer.music.fadeout(1000)
     pygame.time.wait(1000)
 
-
-    # Story 4: The Mole
+    # Show Mole title card after clicker game, before mole story text
     pygame.mixer.music.load(os.path.join(MUSIC_DIR, 'ES_Escalation - Jon Bjork.mp3'))
     pygame.mixer.music.play(-1)
-
+    show_mole_title_card()
     story_segment_4()
     run_runner_game()
     pygame.mixer.music.fadeout(1000)
